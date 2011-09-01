@@ -14,8 +14,22 @@
   <%= stylesheet_link_tag 'blueprint/custom' :media => 'screen' %>
 </head>
 <body>
+  <div class="container">
+    <header>
+      <%= image_tag("logo.png", :alt => "Sample App Logo", :class => "round") %>
+      <nav class="round">
+        <ul>
+          <li><%= link_to "Home", '#'%></li>
+          <li><%= link_to "Help", '#'%></li>
+          <li><%= link_to "Sign In", '#'%></li>
+        </ul>
+      </nav>
+    </header>
 
-<%= yield %>
-
+    <!-- Main part of the page goes inside the section tag -->
+    <section class="round">
+      <%= yield %>
+    </section>
+  </div>
 </body>
 </html>
