@@ -5,4 +5,9 @@ This is only an application that I have developed by reading the Book "Ruby on R
 I heartly thank Michel Hartl and its publisher for all the efforts. While you may read the freeversion of the book online, having a copy of it is certainly worth it.
 The video casts supplimentary of this book is available for sale too. I intend to buy it soon, and even personally push for its purchase to our office library.
 
+Hartl advises to use the following tools in your everyday rails development:
+- annotate-model gem
+- spork
+- autotest
+- SQLite database browser (cross platform)
 I don't have anything else to say.
