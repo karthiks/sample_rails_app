@@ -9,6 +9,16 @@ describe UsersController do
       response.should be_success
       response.should have_selector('title', :content => 'Sign up')
     end
+
+    it "should have form with all required fields" do
+      get 'new'
+      response.should have_selector('form#new_user')
+      response.should have_selector('form div input#user_name')
+      response.should have_selector('form div input#user_email')
+      response.should have_selector('form div input#user_password')
+      response.should have_selector('form div input#user_password_confirmation')
+      response.should have_selector('form div input#user_submit')
+    end
   end
 
   describe "GET show" do
