@@ -46,7 +46,7 @@ describe UsersController do
     
     it "should display the user name" do
       get 'show', :id => @user
-      response.should have_selector('h1', :content => @user.name)
+      response.should have_selector('div', :content => @user.name)
     end
 
     it "should have a profile image" do
@@ -56,33 +56,32 @@ describe UsersController do
   end
 
   describe "#POST create" do
-    before :each do
-      @attributes = { :name => 'Peechumani', 
-                      :email => 'peechu@money.com',
-                      :password => "passwords!",
-                      :password_confirmation => "passwords!" }    
-    end
-    
     describe "#success" do
+      before :each do
+        @attributes = { :name => 'Peechumani', 
+                        :email => 'peechu@money.com',
+                        :password => "passwords!",
+                        :password_confirmation => "passwords!" }    
+      end
+    
       it "should show confirmation page" do 
         post 'create', :user => @attributes
-        
-        response.should be_success
-        response.should render_template('create')
 
-        title = 'Sign-up confirmation'
-        assigns[:title] == title
-        response.should have_selector('title', :content => title)
+        response.should redirect_to(user_path(assigns[:user])) 
+        flash[:notice].should =~ /Signup is successful/
       end
     end
 
     describe "#failure" do
       it "should return to sign-up page upon validation error" do
-        @attributes['name'] = ""
-        post 'create', :user => @attributes
-        assigns[:user].errors.empty?.should be_false
+        post 'create', :user => {} 
+        assigns[:user].errors.any?.should be_true
+        assigns[:user].errors[:name].any?.should be_true
+        assigns[:user].errors[:email].any?.should be_true
+        assigns[:user].errors[:password].any?.should be_true
         response.should render_template('new')
       end
-    end
-  end
+    end #describe "#failure"
+  end #describe "#POST create"
+
 end

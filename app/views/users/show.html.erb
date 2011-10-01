@@ -1,4 +1,11 @@
-<h1>
+<div>
+  <%= flash[:notice] -%>
+</div>
+
+<div>
   <%= gravatar_for @user %> 
   <%= @user.name -%> 
-</h1>
+</div>
+<div>
+  <strong>URL: </strong><%= link_to user_path(@user), @user-%>
+</div>

@@ -12,9 +12,11 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params['user'])
     @user.save
-    @title = 'Sign-up confirmation'
-    unless(@user.id)
-      render :action => 'new'
+    if @user.id.nil?
+      render(:action => 'new')
+      return
     end
+    flash[:notice] = "Signup is successful!"
+    redirect_to user_path(@user)
   end
 end
