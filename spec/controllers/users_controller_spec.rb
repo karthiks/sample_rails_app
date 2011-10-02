@@ -65,7 +65,8 @@ describe UsersController do
       end
     
       it "should show confirmation page" do 
-        post 'create', :user => @attributes
+        
+        lambda { post 'create', :user => @attributes }.should change(User,:count).by(1)
 
         response.should redirect_to(user_path(assigns[:user])) 
         flash[:notice].should =~ /Signup is successful/

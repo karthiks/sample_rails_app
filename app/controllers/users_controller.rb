@@ -16,7 +16,9 @@ class UsersController < ApplicationController
       render(:action => 'new')
       return
     end
-    flash[:notice] = "Signup is successful!"
-    redirect_to user_path(@user)
+    #flash[:notice] = "Signup is successful!"
+    #redirect_to user_path(@user)
+    #redirect_to @user, :flash => { :notice => "Signup is successful!" }
+    redirect_to @user, :notice => "Signup is successful!"
   end
 end
